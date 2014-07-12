@@ -6,13 +6,21 @@ describe('underscore', function() {
         _ = $underscore;
     }));
 
-    it('debounce', function() {
-        var callback = function() {};
+    describe('debounce', function() {
+        it('stub', function() {
+            var callback = function() {return 'x'};
 
-        _.debounce(callback, 100, true);
+            expect(_.debounce(callback, 100, true)()).toEqual('x');
+        });
 
-        expect(_.debounced.callback).toEqual(callback);
-        expect(_.debounced.wait).toEqual(100);
-        expect(_.debounced.immediate).toEqual(true);
+        it('spy', function() {
+            var callback = function() {};
+
+            _.debounce(callback, 100, true);
+
+            expect(_.debounced.callback).toEqual(callback);
+            expect(_.debounced.wait).toEqual(100);
+            expect(_.debounced.immediate).toEqual(true);
+        });
     });
 });
